@@ -67,7 +67,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Nerdtree
-noremap <c-r> :NERDTreeToggle<CR>
+noremap <c-e> :NERDTreeToggle<CR>
 
 " Tagbar
 noremap <c-t> :TagbarToggle<CR>

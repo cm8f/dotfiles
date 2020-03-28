@@ -109,6 +109,7 @@ export PATH=/opt/intel_fpga_lite/18.0/quartus/sopc_builder/bin/:$PATH
 export PATH=/opt/intel_fpga_lite/18.0/nios2eds/:$PATH
 export PATH=/opt/intel_fpga_lite/19.1/modelsim_ase/linuxaloem:$PATH
 export PATH=/home/phil/bin/:$PATH
+ export MTI_HOME=/opt/intel_fpga_lite/19.1/modelsim_ase
 
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -126,9 +127,7 @@ export PATH=/home/phil/bin/:$PATH
  alias vimconfig="v ~/.vimrc"
  alias nvimconfig="v ~/.config/nvim/init.vim"
 
- alias 'dotdrop=/home/phil/dotfiles/dotdrop.sh --cfg=/home/phil/dotfiles/config.yaml'
-
- alias nko="cd /home/phil/Documents/hdl-prj-nanokopter"
+ alias nko="cd /home/phil/Dokumente/hdl-prj-nanokopter"
 
 
  #alias vsim='/opt/intel_fpga_lite/16.0/modelsim_ase/linuxaloem/vsim'
@@ -144,4 +143,4 @@ export PATH=/home/phil/bin/:$PATH
  TRAPWINCH() {
   zle && { zle reset-prompt; zle -R }
 }
-alias config='/usr/bin/git --git-dir=/home/phil/myconfig/ --work-tree=/home/phil'
+alias config='/usr/bin/git --git-dir=/home/phil/.cfg/ --work-tree=/home/phil'

@@ -11,7 +11,7 @@ urxvt.letterSpace: -1
 urxvt.saveLines: 1000000
 
 !! Perl extensions
-urxvt.perl-ext-common: default,matcher,font-size,clipboard
+urxvt.perl-ext-common: default,matcher,font-size,clipboard,resize-font
 urxvt.keysym.Shift-Control-V: eval:paste_clipboard
 urxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 !! Open urls in browser with Control-Click
