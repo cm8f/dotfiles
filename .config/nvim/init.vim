@@ -36,6 +36,9 @@ Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Yggdroot/indentLine'
 
+"tools
+Plug 'vimwiki/vimwiki'
+
 call plug#end()
 
 syntax on        " syntax highlighting
@@ -51,6 +54,7 @@ set smartcase    " do not ignore case if pattern has mixed case (see ignorecase)
 set hid          " do not ask to save the current buffer when opening/switching to another buffer
 set scrolloff=3  " show at least 3 lines either side of the cursor
 set laststatus=2 " display a status line
+let mapleader = ","
 "set spell spelllang=en_us
 
 "CtrlP configuration
@@ -188,6 +192,12 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-m>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 
 
 "Fugitive Git Wrapper

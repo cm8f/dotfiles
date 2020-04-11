@@ -109,7 +109,7 @@ export PATH=/opt/intel_fpga_lite/18.0/quartus/sopc_builder/bin/:$PATH
 export PATH=/opt/intel_fpga_lite/18.0/nios2eds/:$PATH
 export PATH=/opt/intel_fpga_lite/19.1/modelsim_ase/linuxaloem:$PATH
 export PATH=/home/phil/bin/:$PATH
- export MTI_HOME=/opt/intel_fpga_lite/19.1/modelsim_ase
+export MTI_HOME=/opt/intel_fpga_lite/19.1/modelsim_ase
 
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -126,6 +126,7 @@ export PATH=/home/phil/bin/:$PATH
  alias i3sconfig="v ~/.config/i3status/config"
  alias vimconfig="v ~/.vimrc"
  alias nvimconfig="v ~/.config/nvim/init.vim"
+ alias fe="fzf | xargs $EDITOR"
 
  alias nko="cd /home/phil/Dokumente/hdl-prj-nanokopter"
 

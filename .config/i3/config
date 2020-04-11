@@ -16,7 +16,7 @@ set $mod Mod1
 font pango:monospace 10
 
 gaps inner 10
-gaps outer 10
+gaps outer 0 
 for_window [class="^.*"] border pixel 0
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -29,6 +29,9 @@ for_window [class="^.*"] border pixel 0
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# make windows transparent
+exec --no-startup-id xcompmgr
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -185,5 +188,5 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         #status_command i3status
-        status_command bumblebee-status -m nic cpu sensors memory disk battery time pasink pasource -p time.format="%H:%M" -t onedark-powerline
+        status_command bumblebee-status -m mpd traffic cpu sensors memory disk battery time pasink -p time.format="%H:%M" traffic.exclude="lo,virbr,docker,vboxnet,veth,br-4097c0aaa6c6,br-e0d6fdd3de6c,br-6087c798f9e0" -t onedark-powerline
 }
