@@ -97,6 +97,8 @@ source $ZSH/oh-my-zsh.sh
    export EDITOR='nvim'
  fi
 
+ setopt nonomatch
+
 # Compilation flags
  export ARCHFLAGS="-arch x86_64"
 
@@ -110,6 +112,10 @@ export PATH=/opt/intel_fpga_lite/18.0/nios2eds/:$PATH
 export PATH=/opt/intel_fpga_lite/19.1/modelsim_ase/linuxaloem:$PATH
 export PATH=/home/phil/bin/:$PATH
 export MTI_HOME=/opt/intel_fpga_lite/19.1/modelsim_ase
+export LC_ALL=en_US.UTF-8
+export TMP=/tmp/
+export QSYS_ROOTDIR=/opt/intel_fpga_lite/18.0/quartus/sopc_builder/bin
+export QUARTUS_ROOTDIR=/opt/intel_fpga_lite/18.0/quartus/bin
 
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -127,6 +133,11 @@ export MTI_HOME=/opt/intel_fpga_lite/19.1/modelsim_ase
  alias vimconfig="v ~/.vimrc"
  alias nvimconfig="v ~/.config/nvim/init.vim"
  alias fe="fzf | xargs $EDITOR"
+ alias nterm="nios2_command_shell.sh nios2-terminal"
+ alias vrunc="./run.py --compile"
+ alias vtest="./run.py tests -p 12"
+
+ alias dockervsimi="docker run -it --rm --net=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -v /etc/machine-id:/etc/machine-id modelsim_altera_17-1"
 
  alias nko="cd /home/phil/Dokumente/hdl-prj-nanokopter"
 
