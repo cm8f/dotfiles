@@ -1,3 +1,5 @@
 [user]
 	email = philipp@derhecht.de
 	name = Philipp Hecht
+[color]
+	ui = auto
