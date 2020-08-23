@@ -21,10 +21,11 @@ Plug 'majutsushi/tagbar'      " tags
 Plug 'scrooloose/nerdtree'    " file browser
 
 "Syntax
-"Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'scrooloose/syntastic'   " syntax checking
 "Plug 'http://git.vhdltool.com/vhdl-tool/syntastic-vhdl-tool.git'
-Plug 'neomake/neomake'        " async maker/syntax check
+"Plug 'neomake/neomake'        " async maker/syntax check
+"Plug 'dense-analysis/ale'
 
 "Bling
 Plug 'Lokaltog/vim-distinguished'
@@ -76,8 +77,133 @@ noremap <c-e> :NERDTreeToggle<CR>
 " Tagbar
 noremap <c-t> :TagbarToggle<CR>
 
+" vhdl shortcuts
+
+au FileType vhdl call ModeVHDL()
+
+function! ModeVHDL()
+  imap js STD_LOGIC
+  imap jv STD_LOGIC_VECTOR
+  imap jt DOWNTO
+
+  "vhdl pretify
+  iab ieee    IEEE
+  iab std_logic_1164  STD_LOGIC_1164
+  iab numeric_std     NUMERIC_STD
+  iab osvvm           OSVVM
+  iab context         CONTEXT
+  iab work            WORK
+  iab std_logic       STD_LOGIC
+  iab std_logic_vector STD_LOGIC_VECTOR
+  iab signed            SIGNED
+  iab unsigned          UNSIGNED
+  iab resize            RESIZE
+  iab rising_edge       RISING_EDGE
+  iab falling_edge      FALLING_EDGE
+  
+  iab abs               ABS
+  iab access            ACCESS
+  iab after             AFTER
+  iab alias             ALIAS
+  iab all               ALL
+  iab and               AND
+  iab architecture      ARCHITECTURE
+  iab array             ARRAY
+  iab assert            ASSERT
+  iab attribute         ATTRIBUTE
+  iab begin             BEGIN
+  iab block             BLOCK
+  iab body              BODY
+  iab buffer            BUFFER
+  iab bus               BUS
+  iab case              CASE
+  iab component         COMPONENT
+  iab configuration     CONFIGURATION
+  iab constant          CONSTANT
+  iab disconnect        DISCONNECT
+  iab downto            DOWNTO
+  iab elsif             ELSIF
+  iab else              ELSE
+  iab end               END
+  iab entity            ENTITY
+  iab exit              EXIT
+  iab file              FILE
+  iab for               FOR
+  iab function          FUNCTION
+  iab generate          GENERATE
+  iab generic           GENERIC
+  iab group             GROUP
+  iab guarded           GUARDED
+  iab if                IF
+  iab impure            IMPURE
+  iab in                IN
+  iab inertial          INERTIAL
+  iab inout             INOUT
+  iab is                IS
+  iab label             LABEL
+  iab library           LIBRARY
+  iab linkage           LINKAGE
+  iab literal           LITERAL
+  iab loop              LOOP
+  iab map               MAP
+  iab mod               mod
+  iab nand              NAND
+  iab new               NEW
+  iab next              NEXT
+  iab nor               NOR
+  iab not               NOT
+  iab null              NULL
+  iab of                OF
+  iab on                ON
+  iab open              OPEN
+  iab or                OR
+  iab others            OTHERS
+  iab out               OUT
+  iab package           PACKAGE
+  iab port              PORT
+  iab postponed         POSTPONED
+  iab procedure         PROCEDURE
+  iab process           PROCESS
+  iab protected         PROTECTED
+  iab pure              PURE
+  iab range             RANGE
+  iab record            RECORD
+  iab register          REGISTER
+  iab reject            REJECT
+  iab return            RETURN
+  iab rol               ROL
+  iab ror               ROR
+  iab select            SELECT
+  iab severity          SEVERITY
+  iab signal            SIGNAL
+  iab shared            SHARED
+  iab sla               SLA
+  iab sli               SLI
+  iab sra               SRA
+  iab srl               SRL
+  iab subtype           SUBTYPE
+  iab then              THEN
+  iab to                TO
+  iab transport         TRANSPORT
+  iab type              TYPE
+  iab unaffected        UNAFFECTED
+  iab units             UNITS
+  iab until             UNTIL
+  iab use               USE
+  iab variable          VARIABLE
+  iab wait              WAIT
+  iab when              WHEN
+  iab while             WHILE
+  iab with              WITH
+  iab xnor              XNOR
+  iab xor               XOR
+
+endfunction
+
+
 " Airline
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#ale#enabled=1
 " Color scheme settings
 set background=dark
 colorscheme distinguished
@@ -122,17 +248,18 @@ let g:tagbar_type_vhdl = {
 
 
 let g:LanguageClient_serverCommands = {
-	\ 'vhdl': ['/home/phil/bin/vhdl-tool', 'lsp'],
-  \ 'python': ['/usr/bin/pyls'],
+	\ 'vhdl': ['hdl_checker', '--lsp'],
+  \ 'verilog': ['hdl_checker', '--lsp'],
+  \ 'systemverilog': ['hdl_checker', '--lsp'],
   \ 'sh': ['bash-language-server', 'start']
   \ }
 
 let g:LanguageClient_autoStart = 1
 
-nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nmap <F5> <Plug>(lcn-menu)
+nmap <silent>K <Plug>(lcn-hover)
+nmap <silent>gd <Plug>(lcn-definition)
+nmap <silent><F2> <Plug>(lcn-rename)
 
 let g:deoplete#enable_at_startup = 1
 autocmd CompleteDone * pclose!
@@ -151,14 +278,35 @@ autocmd CompleteDone * pclose!
 
 set cscopequickfix=s+,c+,d+,i+,t+,e+
 
-let g:neomake_open_list = 2
-autocmd! BufWritePost,BufRead * Neomake
-let g:neomake_vhdl_vhdltool_maker = {
-	\ 'exe': 'vhdl-tool',
-	\ 'args': ['client', 'lint', '--compact'],
-	\ 'errorformat': '%f:%l:%c:%t:%m',
-	\ }
-let g:neomake_vhdl_enabled_makers = ['vhdltool']
+"let g:neomake_open_list = 2
+"autocmd! BufWritePost,BufRead * Neomake
+"let g:neomake_vhdl_vhdltool_maker = {
+"  \ 'exe': 'vhdl-tool',
+"  \ 'args': ['client', 'lint', '--compact'],
+"  \ 'errorformat': '%f:%l:%c:%t:%m',
+"  \ }
+"let g:neomake_vhdl_enabled_makers = ['vhdltool']
+
+" VHDL
+if executable('vhdl_ls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'vhdl_ls',
+        \ 'cmd': {server_info->['vhdl_ls']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'vhdl_ls.toml'))},
+        \ 'whitelist': ['vhdl'],
+        \ })
+endif
+
+" vim-lsp signs are very useful in spotting bugs
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
+let g:ale_fix_on_save = 1
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 
 
 " Recommended syntastic configuration
@@ -198,6 +346,9 @@ let g:multi_cursor_quit_key            = '<Esc>'
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
+
 
 
 "Fugitive Git Wrapper
@@ -207,7 +358,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 " :Gfetch   git fetch
 " :Gedit
 " :Gsplit
-" :Gvsplit  
+" :Gvsplit
 " :Gmerge   git merge
 " :Grebase  git rebase
 " :Gmove    git mv
