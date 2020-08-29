@@ -116,6 +116,7 @@ export LC_ALL=en_US.UTF-8
 export TMP=/tmp/
 export QSYS_ROOTDIR=/opt/intel_fpga_lite/18.0/quartus/sopc_builder/bin
 export QUARTUS_ROOTDIR=/opt/intel_fpga_lite/18.0/quartus/bin
+export XDG_USER_CONFIG_DIR=~/.config
 
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -140,6 +141,8 @@ export QUARTUS_ROOTDIR=/opt/intel_fpga_lite/18.0/quartus/bin
  alias dockervsimi="docker run -it --rm --net=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -v /etc/machine-id:/etc/machine-id modelsim_altera_17-1"
 
  alias nko="cd /home/phil/Dokumente/hdl-prj-nanokopter"
+ alias gputemp="nvidia-smi -q | grep 'GPU Current Temp'"
+ alias gputemp_cont="nvidia-smi -lms 1000 -q | grep 'GPU Current Temp'"
 
 
  #alias vsim='/opt/intel_fpga_lite/16.0/modelsim_ase/linuxaloem/vsim'
