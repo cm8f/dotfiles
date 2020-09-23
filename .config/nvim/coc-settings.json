@@ -1,0 +1,12 @@
+{
+  "languageserver": {
+    "vhdl_ls": {
+      "command": "vhdl_ls",
+      "filetypes": [
+        "vhdl",
+        "verilog",
+        "systemverilog"
+      ]
+    }
+  }
+}
