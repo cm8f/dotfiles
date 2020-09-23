@@ -439,7 +439,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 
 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/Nextcloud/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 set cmdheight=2
