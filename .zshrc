@@ -17,6 +17,7 @@ function zle-line-iit zle-keymap-select {
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+#ZSH_THEME="eastwood"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -111,6 +112,7 @@ export PATH=/opt/intel_fpga_lite/18.0/quartus/sopc_builder/bin/:$PATH
 export PATH=/opt/intel_fpga_lite/18.0/nios2eds/:$PATH
 export PATH=/opt/intel_fpga_lite/19.1/modelsim_ase/linuxaloem:$PATH
 export PATH=/home/phil/bin/:$PATH
+export PATH=/home/phil/bin/rust_hdl/target/release/:$PATH
 export MTI_HOME=/opt/intel_fpga_lite/19.1/modelsim_ase
 export LC_ALL=en_US.UTF-8
 export TMP=/tmp/
@@ -127,6 +129,8 @@ export XDG_USER_CONFIG_DIR=~/.config
  alias v="nvim"
  alias nv="nvim"
  alias vim="nvim"
+ alias nvim='MODELSIM=~/modelsim.ini vim'
+
  alias zshconfig="v ~/.zshrc"
  alias ohmyzsh="v ~/.oh-my-zsh"
  alias i3config="v ~/.config/i3/config"
@@ -143,6 +147,8 @@ export XDG_USER_CONFIG_DIR=~/.config
  alias nko="cd /home/phil/Dokumente/hdl-prj-nanokopter"
  alias gputemp="nvidia-smi -q | grep 'GPU Current Temp'"
  alias gputemp_cont="nvidia-smi -lms 1000 -q | grep 'GPU Current Temp'"
+ alias sw24k="xrandr --output eDP-1 --mode 3840x2160"
+ alias sw2fhd="xrandr --output eDP-1 --mode 1920x1080"
 
 
  #alias vsim='/opt/intel_fpga_lite/16.0/modelsim_ase/linuxaloem/vsim'
