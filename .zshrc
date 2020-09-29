@@ -128,8 +128,8 @@ export XDG_USER_CONFIG_DIR=~/.config
 #
  alias v="nvim"
  alias nv="nvim"
- alias vim="nvim"
- alias nvim='MODELSIM=~/modelsim.ini vim'
+# alias nvim='MODELSIM=~/modelsim.ini vim'
+alias :q="exit"
 
  alias zshconfig="v ~/.zshrc"
  alias ohmyzsh="v ~/.oh-my-zsh"
@@ -156,11 +156,6 @@ export XDG_USER_CONFIG_DIR=~/.config
 
  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
- #export http_proxy="http://192.168.1.123:3128"
- #export https_proxy="http://192.168.1.123:3128"
- #export ftp_proxy="http://192.168.1.123:3128"
- #
  TRAPWINCH() {
   zle && { zle reset-prompt; zle -R }
 }
