@@ -6,6 +6,7 @@ Plug 'sjl/gundo.vim'          " graphical undo tree
 Plug 'Shougo/echodoc.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'easymotion/vim-easymotion'
 
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim'
@@ -20,6 +21,8 @@ Plug 'majutsushi/tagbar'      " tags
 Plug 'scrooloose/nerdtree'    " file browser
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 
 "Syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " language client
@@ -40,11 +43,11 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'artanikin/vim-synthwave84' 
 Plug 'cocopon/iceberg.vim'
 " Util
-Plug 'tomtom/tcomment_vim'
+"Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'Yggdroot/indentLine'
+"Plug 'terryma/vim-multiple-cursors'
+"Plug 'Yggdroot/indentLine'
 
 "tools
 Plug 'vimwiki/vimwiki'
@@ -55,6 +58,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 call plug#end()
 
 syntax on        " syntax highlighting
+filetype plugin indent on
 
 set backspace=2  " nvim, by default, doesn't backspace over lines, fix this
 set tabstop=2    " a tab is 4 columns
@@ -67,8 +71,18 @@ set smartcase    " do not ignore case if pattern has mixed case (see ignorecase)
 set hid          " do not ask to save the current buffer when opening/switching to another buffer
 set scrolloff=3  " show at least 3 lines either side of the cursor
 set laststatus=2 " display a status line
+set ruler
+set cursorline
+set splitbelow splitright
 let mapleader = ","
 "set spell spelllang=en_us
+"Spellchecking
+map <C-o> :setlocal spell! spelllang=en_us,de_de<CR>
+"split navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 "-----------------------------------------------------------------------
 " Nerdtree
@@ -96,6 +110,17 @@ nnoremap <c-b> :CtrlPBuffer<CR>
 "-----------------------------------------------------------------------
 "recommended Gundo configuration
 nnoremap <F4> :GundoToggle<CR>
+
+"-------------------------------------------------------------
+" gitgutter
+"-------------------------------------------------------------
+let g:gitgutter_terminal_reports_focus=0
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+nmap ght :GitGutterLineHighlightsToggle<CR>
 
 "-----------------------------------------------------------------------
 " easyalign
@@ -402,6 +427,16 @@ function! ModeVHDL()
   iab <expr> <buffer> leftof            <SID>VHDLUppercaseKeyword('leftof')
   iab <expr> <buffer> rightof           <SID>VHDLUppercaseKeyword('rightof')
   iab <expr> <buffer> instance_name     <SID>VHDLUppercaseKeyword('instance_name')
+  " bool 
+  iab <expr> <buffer> boolean           <SID>VHDLUppercaseKeyword('boolean')
+  iab <expr> <buffer> false             <SID>VHDLUppercaseKeyword('false')
+  iab <expr> <buffer> true              <SID>VHDLUppercaseKeyword('true')
+  " severity assertion
+  iab <expr> <buffer> report            <SID>VHDLUppercaseKeyword('report')
+  iab <expr> <buffer> severity          <SID>VHDLUppercaseKeyword('severity')
+  iab <expr> <buffer> warning           <SID>VHDLUppercaseKeyword('warning')
+  iab <expr> <buffer> error             <SID>VHDLUppercaseKeyword('error')
+  iab <expr> <buffer> failure           <SID>VHDLUppercaseKeyword('failure')
 endfunction
 
 "-------------------------------------------------------------
