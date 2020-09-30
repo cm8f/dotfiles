@@ -31,6 +31,9 @@ for_window [class="^.*"] border pixel 2
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id kwallet-pam
 exec --no-startup-id kwalletd5
+exec --no-startup-id xrandr --newmode "2560x1440umc" 221.000000  2560 2608 2640 2720  1440 1443 1447 1478  +HSync -VSync 
+exec --no-startup-id xrandr --addmode DP-3 "2560x1440umc"
+exec --no-startup-id xrandr --output DP-3 --mode 2560x1440umc --left-of eDP-1
 
 # make windows transparent
 #exec --no-startup-id xcompmgr
