@@ -35,13 +35,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " language client
 "Bling
 Plug 'bling/vim-airline'      " fancy status line
 "color
-Plug 'Lokaltog/vim-distinguished'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'ajmwagar/vim-deus'
-Plug 'whatyouhide/vim-gotham'
+"Plug 'Lokaltog/vim-distinguished'
+"Plug 'tyrannicaltoucan/vim-deep-space'
+"Plug 'ajmwagar/vim-deus'
+"Plug 'whatyouhide/vim-gotham'
+"Plug 'artanikin/vim-synthwave84' 
 Plug 'arcticicestudio/nord-vim'
-Plug 'artanikin/vim-synthwave84' 
 Plug 'cocopon/iceberg.vim'
+Plug 'dylanaraps/wal.vim'
 " Util
 "Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdcommenter'
@@ -89,6 +90,7 @@ map <C-l> <C-w>l
 "-----------------------------------------------------------------------
 noremap <C-e> :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusWithFlags = 1
+let g:NERDTreeIgnore = ['\.pyc$', '^__pycache__$', '^vunit_out$']
 
 "-----------------------------------------------------------------------
 " NerdCommenter
@@ -100,7 +102,7 @@ nmap <C-\> <plug>NERDCommenterToggle
 "CtrlP configuration
 "-----------------------------------------------------------------------
 "ignore gitignore files
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['__pycache__', 'vunit_out', '.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 nnoremap <c-b> :CtrlPBuffer<CR>
