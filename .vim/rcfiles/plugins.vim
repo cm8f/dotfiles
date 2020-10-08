@@ -8,12 +8,12 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vim-which-key'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neoinclude.vim'
 "Git helpers
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter' " display modified lines
+"Plug 'vim-scripts/vim-svngutter'
 "IDE
 Plug 'majutsushi/tagbar'      " tags
 Plug 'scrooloose/nerdtree'    " file browser
@@ -23,15 +23,22 @@ Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'kshenoy/vim-signature'
 Plug 'vim-vdebug/vdebug'
-"Syntax
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " language client
+if has('nvim') 
+  "Syntax
+  Plug 'neoclide/coc.nvim', {'branch': 'release'} " language client
+  " Completion
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " color
+  Plug 'Lokaltog/vim-distinguished'
+  Plug 'dylanaraps/wal.vim'
+else 
+  Plug 'dense-analysis/ale'
+endif
 "Bling
 Plug 'bling/vim-airline'      " fancy status line
 "color
-Plug 'Lokaltog/vim-distinguished'
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
-Plug 'dylanaraps/wal.vim'
 " Util
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
