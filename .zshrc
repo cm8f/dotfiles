@@ -145,6 +145,7 @@ alias :q="exit"
  alias dockervsimi="docker run -it --rm --net=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -v /etc/machine-id:/etc/machine-id modelsim_altera_17-1"
 
  alias nko="cd /home/phil/Dokumente/hdl-prj-nanokopter"
+ alias slib="cd /home/phil/Dokumente/git_repos/hdl_sensors/" 
  alias gputemp="nvidia-smi -q | grep 'GPU Current Temp'"
  alias gputemp_cont="nvidia-smi -lms 1000 -q | grep 'GPU Current Temp'"
  alias sw24k="xrandr --output eDP-1 --mode 3840x2160"
@@ -155,6 +156,9 @@ alias :q="exit"
  #alias vcom='/opt/intel_fpga_lite/16.0/modelsim_ase/linuxaloem/vcom'
 
  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+ wal -i ~/Bilder/wallpaper5.jpg
+
 
  TRAPWINCH() {
   zle && { zle reset-prompt; zle -R }
