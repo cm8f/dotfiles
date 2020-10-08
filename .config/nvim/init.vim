@@ -7,6 +7,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'easymotion/vim-easymotion'
+Plug 'liuchengxu/vim-which-key'
 
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim'
@@ -23,32 +24,22 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
+Plug 'kshenoy/vim-signature'
+Plug 'vim-vdebug/vdebug'
 
 "Syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " language client
-"Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'scrooloose/syntastic'   " syntax checking
-"Plug 'http://git.vhdltool.com/vhdl-tool/syntastic-vhdl-tool.git'
-"Plug 'neomake/neomake'        " async maker/syntax check
-"Plug 'dense-analysis/ale'
 
 "Bling
 Plug 'bling/vim-airline'      " fancy status line
 "color
 "Plug 'Lokaltog/vim-distinguished'
-"Plug 'tyrannicaltoucan/vim-deep-space'
-"Plug 'ajmwagar/vim-deus'
-"Plug 'whatyouhide/vim-gotham'
-"Plug 'artanikin/vim-synthwave84' 
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'dylanaraps/wal.vim'
 " Util
-"Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
-"Plug 'terryma/vim-multiple-cursors'
-"Plug 'Yggdroot/indentLine'
 
 "tools
 Plug 'vimwiki/vimwiki'
@@ -75,15 +66,27 @@ set laststatus=2 " display a status line
 set ruler
 set cursorline
 set splitbelow splitright
+
+" tidy up backup/swap/undo
+set undofile=~/.vim/undodir//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+
 let mapleader = ","
 "set spell spelllang=en_us
 "Spellchecking
 map <C-o> :setlocal spell! spelllang=en_us,de_de<CR>
+" fix last spelling error
+noremap <leader>sp :normal! mm[s1z=`m<CR>
+
 "split navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+noremap <leader>h :tab term htop<CR>
+noremap <leader>t :tab term<CR>
 
 "-----------------------------------------------------------------------
 " Nerdtree
@@ -279,7 +282,6 @@ let g:coc_global_extensions = [
 "-----------------------------------------------------------------------
 " vhdl shortcuts
 "-----------------------------------------------------------------------
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 au FileType vhdl call ModeVHDL()
 
 function! s:VHDLUppercaseKeyword(key)
@@ -511,7 +513,6 @@ let g:mkdp_preview_options = {
     \ }
 let g:mkdp_page_title = '「${name}」'
 
-
 "Fugitive Git Wrapper
 " :G        git status
 " :Gpush    git push
@@ -528,73 +529,3 @@ let g:mkdp_page_title = '「${name}」'
 " :Ggrep    git grep
 " :Gclog    git log
 " :Gllog    git log
-"
-"
-" Recommended syntastic configuration
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"
-"let g:syntastic_vhdl_checkers = ['vhdltool']
-
-
-"let g:neomake_open_list = 2
-"autocmd! BufWritePost,BufRead * Neomake
-"let g:neomake_vhdl_vhdltool_maker = {
-"  \ 'exe': 'vhdl-tool',
-"  \ 'args': ['client', 'lint', '--compact'],
-"  \ 'errorformat': '%f:%l:%c:%t:%m',
-"  \ }
-"let g:neomake_vhdl_enabled_makers = ['vhdltool']
-
-" VHDL
-"if executable('vhdl_ls')
-"    au User lsp_setup call lsp#register_server({
-"        \ 'name': 'vhdl_ls',
-"        \ 'cmd': {server_info->['vhdl_ls']},
-"        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'vhdl_ls.toml'))},
-"        \ 'whitelist': ['vhdl'],
-"        \ })
-"endif
-
-" vim-lsp signs are very useful in spotting bugs
-"let g:lsp_signs_enabled = 1
-"let g:lsp_diagnostics_echo_cursor = 1
-"
-"let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
-"let g:ale_fix_on_save = 1
-
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-
-
-" Recommended syntastic configuration
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_vhdl_checkers = ['vhdltool']
-"
-"let g:LanguageClient_serverCommands = {
-"	\ 'vhdl': ['hdl_checker', '--lsp'],
-"  \ 'verilog': ['hdl_checker', '--lsp'],
-"  \ 'systemverilog': ['hdl_checker', '--lsp'],
-"  \ 'sh': ['bash-language-server', 'start']
-"  \ }
-"
-"let g:LanguageClient_autoStart = 1
-"
-"nmap <F5> <Plug>(lcn-menu)
-"nmap <silent>K <Plug>(lcn-hover)
-"nmap <silent>gd <Plug>(lcn-definition)
-"nmap <silent><F2> <Plug>(lcn-rename)
