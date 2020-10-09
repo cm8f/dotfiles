@@ -63,8 +63,8 @@ colorscheme iceberg
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#ale#enabled=1
 
-let g:deoplete#enable_at_startup = 1
-autocmd CompleteDone * pclose!
+"let g:deoplete#enable_at_startup = 1
+"autocmd CompleteDone * pclose!
 
 set cscopequickfix=s+,c+,d+,i+,t+,e+
 
