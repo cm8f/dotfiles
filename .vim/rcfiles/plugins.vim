@@ -39,11 +39,21 @@ Plug 'bling/vim-airline'      " fancy status line
 "color
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme' 
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/gruvbox-material'
+Plug 'crusoexia/vim-dracula'
+Plug 'sickill/vim-monokai'
+Plug 'danilo-augusto/vim-afterglow'
 " Util
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/vim-easy-align'
+Plug 'frazrepo/vim-rainbow'
 "tools
 Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'dstadelm/vim-vunit'
 
 call plug#end()

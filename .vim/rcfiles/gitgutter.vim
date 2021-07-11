@@ -8,3 +8,4 @@ nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
 nmap ght :GitGutterLineHighlightsToggle<CR>
+nmap ghp :GitGutterPreviewHunk<CR>

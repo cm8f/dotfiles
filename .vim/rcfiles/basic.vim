@@ -44,7 +44,7 @@ map <C-o> :setlocal spell! spelllang=en_us,de_de<CR>
 " fix last spelling error
 noremap <leader>sp :normal! mm[s1z=`m<CR>
 " unhighlight
-nnoremap <C-L> :nohl<CR><C-L>
+"nnoremap <C-L> :nohl<CR><C-L>
 
 "split navigation
 map <C-h> <C-w>h
@@ -57,7 +57,7 @@ noremap <leader>t :tab term<CR>
 
 " Color scheme settings
 set background=dark
-colorscheme iceberg
+colorscheme everforest
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
@@ -73,3 +73,8 @@ hi search ctermbg=LightBlue
 "setlocal omnifunc=syntaxcomplete#Complete
 let g:ale_completion_enabled = 1
 set omnifunc=ale#completion#OmniFunc
+
+:command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
+":command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> - |fmt -csw78
+
+let g:rainbow_active = 1

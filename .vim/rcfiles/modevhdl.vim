@@ -4,9 +4,9 @@
 au FileType vhdl call ModeVHDL()
 
 function! VHDLShortcuts()
-  imap sl     STD_LOGIC
-  imap slv    STD_LOGIC_VECTOR
-  imap dt     DOWNTO
+  imap jsl     STD_LOGIC
+  imap jslv    STD_LOGIC_VECTOR
+  imap jdt     DOWNTO
   imap toint  TO_INTEGER
   imap int    INTEGER
   imap usgn   UNSIGNED
@@ -155,6 +155,7 @@ function! ModeVHDL()
   iab <expr> <buffer> value             <SID>VHDLUppercaseKeyword('value')
   iab <expr> <buffer> pos               <SID>VHDLUppercaseKeyword('pos')
   iab <expr> <buffer> val               <SID>VHDLUppercaseKeyword('val')
+  iab <expr> <buffer> value             <SID>VHDLUppercaseKeyword('value')
   iab <expr> <buffer> succ              <SID>VHDLUppercaseKeyword('succ')
   iab <expr> <buffer> pred              <SID>VHDLUppercaseKeyword('pred')
   iab <expr> <buffer> leftof            <SID>VHDLUppercaseKeyword('leftof')
@@ -169,5 +170,6 @@ function! ModeVHDL()
   iab <expr> <buffer> severity          <SID>VHDLUppercaseKeyword('severity')
   iab <expr> <buffer> warning           <SID>VHDLUppercaseKeyword('warning')
   iab <expr> <buffer> error             <SID>VHDLUppercaseKeyword('error')
+  iab <expr> <buffer> note              <SID>VHDLUppercaseKeyword('note')
   iab <expr> <buffer> failure           <SID>VHDLUppercaseKeyword('failure')
 endfunction
