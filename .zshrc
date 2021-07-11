@@ -77,8 +77,6 @@ plugins=(
   screen
   python
   sudo
-  urltools
-  encode64
   vi-mode
 )
 
@@ -106,20 +104,23 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+export LD_LIBRARY_PATH=/opt/intel_fpga/18.0/lib32
 # quartus modelsim
-export PATH=/opt/intel_fpga_lite/18.0/quartus/bin/:$PATH
-export PATH=/opt/intel_fpga_lite/18.0/quartus/sopc_builder/bin/:$PATH
-export PATH=/opt/intel_fpga_lite/18.0/nios2eds/:$PATH
-export PATH=/opt/intel_fpga_lite/19.1/modelsim_ase/linuxaloem:$PATH
+export PATH=/opt/intel_fpga/20.1/quartus/bin/:$PATH
+export PATH=/opt/intel_fpga/20.1/quartus/sopc_builder/bin/:$PATH
+export PATH=/opt/intel_fpga/20.1/nios2eds/:$PATH
+export PATH=/opt/intel_fpga/20.1/modelsim_ase/linuxaloem:$PATH
 export PATH=/home/phil/bin/:$PATH
 export PATH=/home/phil/bin/rust_hdl/target/release/:$PATH
-export MTI_HOME=/opt/intel_fpga_lite/19.1/modelsim_ase
+export PATH=/home/phil/.local/share/gem/ruby/2.7.0/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export TMP=/tmp/
-export QSYS_ROOTDIR=/opt/intel_fpga_lite/18.0/quartus/sopc_builder/bin
-export QUARTUS_ROOTDIR=/opt/intel_fpga_lite/18.0/quartus/bin
+export QSYS_ROOTDIR=/opt/intel_fpga/20.1/quartus/sopc_builder/bin
+export QUARTUS_ROOTDIR=/opt/intel_fpga/20.1/quartus/bin
 export XDG_USER_CONFIG_DIR=~/.config
+export VUNIT_SIMULATOR=ghdl
 
+export CROSS_COMPILE=/opt/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -131,12 +132,16 @@ export XDG_USER_CONFIG_DIR=~/.config
 # alias nvim='MODELSIM=~/modelsim.ini vim'
 alias :q="exit"
 
+alias butzlkuh="szyszka" 
+alias schluckauf="czkawka-gui"
+
  alias zshconfig="v ~/.zshrc"
  alias ohmyzsh="v ~/.oh-my-zsh"
  alias i3config="v ~/.config/i3/config"
  alias i3sconfig="v ~/.config/i3status/config"
  alias vimconfig="v ~/.vimrc"
  alias nvimconfig="v ~/.config/nvim/init.vim"
+ alias nvimcheat="v ~/Nextcloud/vimwiki/vim_cheatsheet.md"
  alias fe="fzf | xargs $EDITOR"
  alias nterm="nios2_command_shell.sh nios2-terminal"
  alias vrunc="./run.py --compile"
@@ -148,8 +153,17 @@ alias :q="exit"
  alias slib="cd /home/phil/Dokumente/git_repos/hdl_sensors/" 
  alias gputemp="nvidia-smi -q | grep 'GPU Current Temp'"
  alias gputemp_cont="nvidia-smi -lms 1000 -q | grep 'GPU Current Temp'"
- alias sw24k="xrandr --output eDP-1 --mode 3840x2160"
- alias sw2fhd="xrandr --output eDP-1 --mode 1920x1080"
+ alias sw24k="xrandr --output eDP1 --mode 3840x2160"
+ alias sw2fhd="xrandr --output eDP1 --mode 1920x1080"
+ alias sw4k="xrandr --output eDP-1 --mode 3840x2160"
+ alias swfhd="xrandr --output eDP-1 --mode 1920x1080"
+
+ alias docs="cd /mnt/nfs/documents"
+ alias pics="cd /mnt/nfs/pictures"
+ alias backup="cd /mnt/nfs/backup"
+ alias music="cd /mnt/nfs/music"
+ alias movies="cd /mnt/nfs/movies"
+ alias software="cd /mnt/nfs/software"
 
 
  #alias vsim='/opt/intel_fpga_lite/16.0/modelsim_ase/linuxaloem/vsim'
@@ -157,10 +171,20 @@ alias :q="exit"
 
  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
- wal -i ~/Bilder/wallpaper5.jpg
-
-
  TRAPWINCH() {
   zle && { zle reset-prompt; zle -R }
 }
 alias config='/usr/bin/git --git-dir=/home/phil/.cfg/ --work-tree=/home/phil'
+
+removecontainers() {
+  docker stop $(docker ps -aq)
+  docker rm $(docker ps -aq)
+}
+
+dockerarmageddon() {
+  removecontainers
+  docker network prune -f
+  docker rmi -f $(docker images --filter dangling=true -qa)
+  docker volume rm $(docker volume ls --filter dangling=true -q)
+  docker rmi -f $(docker images -qa)
+}
